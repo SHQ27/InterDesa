@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_13_195623) do
+ActiveRecord::Schema.define(version: 2021_09_13_203844) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -57,6 +57,18 @@ ActiveRecord::Schema.define(version: 2021_09_13_195623) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "payment_plans", force: :cascade do |t|
+    t.integer "number_of_payments", null: false
+    t.integer "unit_id", null: false
+    t.integer "client_id", null: false
+    t.datetime "start", null: false
+    t.datetime "end"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["client_id"], name: "index_payment_plans_on_client_id"
+    t.index ["unit_id"], name: "index_payment_plans_on_unit_id"
+  end
+
   create_table "units", force: :cascade do |t|
     t.string "name", null: false
     t.integer "type_id", null: false
@@ -68,5 +80,7 @@ ActiveRecord::Schema.define(version: 2021_09_13_195623) do
     t.index ["building_id"], name: "index_units_on_building_id"
   end
 
+  add_foreign_key "payment_plans", "clients"
+  add_foreign_key "payment_plans", "units"
   add_foreign_key "units", "buildings"
 end
