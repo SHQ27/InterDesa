@@ -6,7 +6,7 @@ ActiveAdmin.register Unit do
      f.inputs 'Information' do
        f.input :name
        f.input :building_id, as: :select, collection: Building.all, label: :name
-       f.input :type_id, as: :select, collection: Unit.all, label: :name
+       f.input :type_id, as: :select, collection: Unit.getTypes, label: :name, selected: 'apartment'
        f.input :price
        f.input :details, label: 'Details'
 

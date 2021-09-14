@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_13_203844) do
+ActiveRecord::Schema.define(version: 2021_09_14_073802) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -65,8 +65,22 @@ ActiveRecord::Schema.define(version: 2021_09_13_203844) do
     t.datetime "end"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
     t.index ["client_id"], name: "index_payment_plans_on_client_id"
     t.index ["unit_id"], name: "index_payment_plans_on_unit_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.datetime "start", null: false
+    t.datetime "due", null: false
+    t.float "amount"
+    t.boolean "paid"
+    t.integer "payment_plan_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.datetime "paid_at"
+    t.index ["payment_plan_id"], name: "index_payments_on_payment_plan_id"
   end
 
   create_table "units", force: :cascade do |t|
@@ -82,5 +96,6 @@ ActiveRecord::Schema.define(version: 2021_09_13_203844) do
 
   add_foreign_key "payment_plans", "clients"
   add_foreign_key "payment_plans", "units"
+  add_foreign_key "payments", "payment_plans"
   add_foreign_key "units", "buildings"
 end

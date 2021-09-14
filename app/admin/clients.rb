@@ -12,6 +12,7 @@ ActiveAdmin.register Client do
        f.input :document_number
        f.input :birth_date, as: :datepicker
      end
+     f.actions
    end
   
 end
