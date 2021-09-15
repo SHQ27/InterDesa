@@ -17,6 +17,13 @@
 //
 //   .status_tag { background: #6090DB; }
 
+
+//Yellow text alert
 .flash_alert {
     color: #cb9810!important
+}
+
+//Grayed disabled input
+input:disabled {
+  background: #ccc!important;
 }

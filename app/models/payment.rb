@@ -1,9 +1,25 @@
 class Payment < ApplicationRecord
   belongs_to :payment_plan
 
-  after_update :updatePayments
+  before_update :updatePayments, if: :amount_changed?
 
   def updatePayments
-  end
+      paymentPlan = self.payment_plan
+      remainingPayments = paymentPlan.getRemainingPayments
+      remainingAmount = paymentPlan.getRemainingAmount
+      amountToDistribute = remainingAmount - self.amount
+      paymentsToDistribute = []
 
+      remainingPayments.each do |p|
+        unless p.id == self.id
+          paymentsToDistribute.push(p)
+        end
+      end
+
+      amountPerPayment = amountToDistribute / paymentsToDistribute.length
+      
+      paymentsToDistribute.each do |ptd|
+        ptd.update_column(:amount, amountPerPayment)
+      end
+    end
 end

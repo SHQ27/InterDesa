@@ -5,6 +5,18 @@ class PaymentPlan < ApplicationRecord
 
   after_create :createPayments
 
+  def getRemainingPayments
+    self.payments.where(:paid => false)
+  end
+
+  def getRemainingAmount
+    totalRemaining = 0
+    self.getRemainingPayments.each do |p|
+      totalRemaining += p.amount
+    end
+    totalRemaining
+  end
+
   def createPayments
     payments = self.number_of_payments
     planStart = self.start
@@ -13,7 +25,7 @@ class PaymentPlan < ApplicationRecord
     i = 0
 
     while i < payments
-      paymentName = "Cuota nro. #{i} - #{self.unit.name}"
+      paymentName = "Cuota nro. #{i + 1} - #{self.unit.name} (#{self.unit.building.name})"
       paymentStart = planStart + i.month
       paymentDue = paymentStart + 1.month
       paymentAmount = paymentPlanTotal / payments
