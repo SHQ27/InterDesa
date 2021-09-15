@@ -21,9 +21,10 @@ ActiveAdmin.register Payment do
 
   form do |f|
     disabled = f.object && f.object.paid ? true : false
+    isEdit = f.object ? true : false
     f.inputs 'Information' do
-      f.input :name, :input_html => { :disabled => disabled }
-      f.input :payment_plan_id, as: :select, collection: PaymentPlan.all, label: :name, :input_html => { :disabled => disabled }
+      f.input :name, :input_html => { :disabled => isEdit }
+      f.input :payment_plan_id, as: :select, collection: PaymentPlan.all, label: :name, :input_html => { :disabled => isEdit }
       f.input :start, as: :datepicker, :input_html => { :disabled => disabled }
       f.input :due, as: :datepicker, :input_html => { :disabled => disabled }
       f.input :amount, :input_html => { :disabled => disabled }
