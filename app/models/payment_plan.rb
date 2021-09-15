@@ -9,15 +9,23 @@ class PaymentPlan < ApplicationRecord
     self.payments.where(:paid => false)
   end
 
+  def getPaidPayments
+    self.payments.where(:paid => true)
+  end
+
   def getRemainingAmount
-    totalRemaining = 0
-    self.getRemainingPayments.each do |p|
-      totalRemaining += p.amount
+    totalAmount = self.unit.price
+    paidPayments = self.getPaidPayments
+    paidAmount = 0
+    paidPayments.each do |p|
+      paidAmount += p.amount
     end
-    totalRemaining
+    totalAmount - paidAmount
   end
 
   def createPayments
+    self.name = self.unit.name + ' - ' + self.unit.building.name
+    self.save
     payments = self.number_of_payments
     planStart = self.start
     paymentPlanTotal = self.unit.price

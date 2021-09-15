@@ -16,6 +16,7 @@ class Payment < ApplicationRecord
     remainingPayments = paymentPlan.getRemainingPayments
     remainingAmount = paymentPlan.getRemainingAmount
     amountToDistribute = remainingAmount - self.amount
+
     paymentsToDistribute = []
 
     remainingPayments.each do |p|

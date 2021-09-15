@@ -4,6 +4,19 @@ class Unit < ApplicationRecord
 
   enum type_id: %i[apartment parking]
 
+  def self.available
+    availableUnits = []
+    Unit.all.each do |u|
+      if not u.payment_plan
+        availableUnits.push(u)
+      end
+    end
+    availableUnits
+  end
+  def isAvailable
+    self.payment_plan ? true : false
+  end
+
   def self.getTypes
     return {
       'apartment' => 'apartment',
