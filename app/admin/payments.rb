@@ -11,7 +11,8 @@ ActiveAdmin.register Payment do
       resource.paid = true
       resource.paid_at = Time.now
       resource.save
-      flash[:notice] = 'Payment paid!'
+      PaymentMailer.with(payment: resource).recieved_payment.deliver_later
+      flash[:notice] = 'Payment set as paid and email sent!'
     else
       flash[:alert] = 'Already paid!'
     end

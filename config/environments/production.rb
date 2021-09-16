@@ -64,6 +64,21 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  #MAILER
+  config.action_mailer.delivery_method = :smtp
+  host = 'http://www,interdesa.com.ar'
+  config.action_mailer.default_url_options = { host: host }
+
+  # SMTP settings
+  config.action_mailer.smtp_settings = {
+    :address              => "mx.interplan.com.ar",
+    :port                 => 25,
+    :user_name            => "web@interdesa.com.ar",
+    :password             => "sJYhF78wlQ",
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+  }
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
