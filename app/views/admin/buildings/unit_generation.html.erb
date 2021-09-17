@@ -1,0 +1,48 @@
+<div id="main_content_wrapper">
+  <div id="main_content">
+    <form class='formtastic' action='/admin/buildings/<%= @building.id%>/generate_units' method='post'>
+      <fieldset class='inputs'>
+        <legend><span>Parameters</span></legend>
+        <ol>
+          <li class="string input mandatory stringish" id="apartments_per_story">
+            <label for="apartments_per_story" class="label">Apartments per story</label>
+            <input id="apartments_per_story" type="text" name="apartments_per_story" required>
+          </li>
+
+          <li class="string input mandatory stringish" id="stories">
+            <label for="stories" class="label">Stories</label>
+            <input id="stories" type="text" name="stories" required>
+          </li>
+
+          <li class="string input mandatory stringish" id="ground_floor_apartments">
+            <label for="ground_floor_apartments" class="label">Ground floor apartments</label>
+            <input id="ground_floor_apartments" type="text" name="ground_floor_apartments" required>
+          </li>
+
+          <li class="string input mandatory stringish" id="parkings">
+            <label for="parkings" class="label">Parking spots</label>
+            <input id="parkings" type="text" name="parkings" required>
+          </li>
+
+          <li class="string input mandatory stringish" id="default_apartment_price">
+            <label for="default_apartment_price" class="label">Default apartment price</label>
+            <input id="default_apartment_price" type="text" name="default_apartment_price" required>
+          </li>
+
+          <li class="string input mandatory stringish" id="default_parking_price">
+            <label for="default_parking_price" class="label">Default parking price</label>
+            <input id="default_parking_price" type="text" name="default_parking_price" required>
+          </li>
+        </ol>
+      </fieldset>
+      <fieldset class="actions">
+        <ol>
+          <li class="action input_action " id="generate_units_submit_action">
+            <input type="submit" name="commit" value="Generate" data-disable-with="Generate">
+          </li>
+          <li class="cancel"><a href="/admin/buildings">Cancel</a></li>
+        </ol>
+      </fieldset>
+    </form>
+  </div>
+</div>

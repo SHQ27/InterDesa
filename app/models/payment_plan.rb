@@ -5,34 +5,7 @@ class PaymentPlan < ApplicationRecord
 
   after_create :createPayments
 
-  def getRemainingPayments
-    self.payments.where(:paid => false)
-  end
-
-  def getPaidPayments
-    self.payments.where(:paid => true)
-  end
-
-  def getRemainingAmount
-    totalAmount = self.unit.price
-    paidPayments = self.getPaidPayments
-    paidAmount = 0
-    paidPayments.each do |p|
-      paidAmount += p.amount
-    end
-    totalAmount - paidAmount
-  end
-
-  def getDueAmount
-    duePayments = self.payments.where(:paid => false).where("due <= ?", Time.now)
-    dueAmount = 0
-
-    duePayments.each do |p| 
-      dueAmount += p.amount
-    end
-    dueAmount
-  end
-
+  #After create
   def createPayments
     self.name = self.unit.name + ' - ' + self.unit.building.name
     self.save
@@ -59,6 +32,34 @@ class PaymentPlan < ApplicationRecord
 
       i += 1
     end
+  end
+
+  #Finders
+  def getRemainingPayments
+    self.payments.where(:paid => false)
+  end
+
+  def getPaidPayments
+    self.payments.where(:paid => true)
+  end
+
+  def getRemainingAmount
+    totalAmount = self.unit.price
+    paidPayments = self.getPaidPayments
+    paidAmount = 0
+    paidPayments.each do |p|
+      paidAmount += p.amount
+    end
+    totalAmount - paidAmount
+  end
+
+  def getDueAmount
+    duePayments = self.payments.where(:paid => false).where("due <= ?", Time.now)
+    dueAmount = 0
+    duePayments.each do |p| 
+      dueAmount += p.amount
+    end
+    dueAmount
   end
 
 end
