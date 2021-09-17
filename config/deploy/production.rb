@@ -9,6 +9,7 @@
 
 set :rails_env, 'production'
 server "gw2.interplan.com.ar", user: "interdesa", roles: %w{app db web}
+ssh_options: { port: 5978 }
 
 # role-based syntax
 # ==================
