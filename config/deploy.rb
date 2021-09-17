@@ -5,6 +5,7 @@ set :application, "Interdesa"
 set :repo_url, "git@github.com:SHQ27/Interdesa.git"
 set :branch, "main"
 set :deploy_to, "/home/interdesa/#{fetch :application}"
+append :linked_files, "config/master.key"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
