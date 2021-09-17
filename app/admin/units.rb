@@ -2,6 +2,17 @@ ActiveAdmin.register Unit do
   permit_params :name, :type_id, :price, :details, :building_id
   menu priority: 2, parent: "Buildings" 
 
+  index do
+    selectable_column
+    id_column
+    column :name
+    column :building
+    column :type_id
+    column :price
+    actions
+  end
+
+
   form do |f|
     disabled = f.object && f.object.payment_plan ? true : false
     selectedType = f.object ? f.object.type_id : 'apartment'

@@ -3,6 +3,15 @@ ActiveAdmin.register Building do
   permit_params :name, :address
   menu priority: 1, parent: "Buildings"
 
+  index do
+    selectable_column
+    id_column
+    column :name
+    column :address
+    actions
+  end
+
+
   action_item :unit_generation, only: :show do
     link_to('Generate units', unit_generation_admin_building_path(resource), id: :generate_units_link, class: :button)
   end

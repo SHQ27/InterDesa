@@ -2,6 +2,17 @@ ActiveAdmin.register PaymentPlan do
   menu priority: 1, parent: "Payment plans"
   permit_params :name, :number_of_payments, :unit_id, :client_id, :start, :end
 
+  index do
+    selectable_column
+    id_column
+    column :name
+    column :number_of_payments
+    column :unit
+    column :client
+    column :start
+    actions
+  end
+
   form do |f|
      f.inputs 'Information' do
        f.input :number_of_payments

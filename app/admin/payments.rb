@@ -2,6 +2,19 @@ ActiveAdmin.register Payment do
   menu priority: 2, parent: "Payment plans"
   permit_params :start, :due, :amount, :paid, :payment_plan_id
 
+  index do
+    selectable_column
+    id_column
+    column :name
+    column :start
+    column :due
+    column :amount
+    column :paid
+    column :payment_plan
+    column :paid_at
+    actions
+  end
+
   action_item :pay, only: :show do
     link_to('Pay', pay_admin_payment_path(resource), id: :pay_link, class: :button)
   end
