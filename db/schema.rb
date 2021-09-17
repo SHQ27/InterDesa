@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_14_073802) do
+ActiveRecord::Schema.define(version: 2021_09_17_051315) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -80,6 +80,8 @@ ActiveRecord::Schema.define(version: 2021_09_14_073802) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.datetime "paid_at"
+    t.datetime "due_notified_at"
+    t.datetime "upcoming_notified_at"
     t.index ["payment_plan_id"], name: "index_payments_on_payment_plan_id"
   end
 
