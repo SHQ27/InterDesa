@@ -23,6 +23,16 @@ class PaymentPlan < ApplicationRecord
     totalAmount - paidAmount
   end
 
+  def getDueAmount
+    duePayments = self.payments.where(:paid => false).where("due <= ?", Time.now)
+    dueAmount = 0
+
+    duePayments.each do |p| 
+      dueAmount += p.amount
+    end
+    dueAmount
+  end
+
   def createPayments
     self.name = self.unit.name + ' - ' + self.unit.building.name
     self.save

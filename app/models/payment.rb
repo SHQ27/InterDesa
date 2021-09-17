@@ -11,6 +11,34 @@ class Payment < ApplicationRecord
     Payment.where(:paid => true).order(paid_at: :desc).first(5)
   end
 
+  def getStartMonthName
+    monthNumber = self.start.month
+    meses = [nil, 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+    meses[monthNumber]
+  end
+
+  def getDueMonthName
+    monthNumber = self.due.month
+    meses = [nil, 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+    meses[monthNumber]
+  end
+
+  def getFormattedStart
+    self.start.strftime("%d/%m/%Y")
+  end
+
+  def getFormattedEnd
+    self.due.strftime("%d/%m/%Y")
+  end
+
+  def getFormattedAmount
+    sprintf('%.2f', self.amount)
+  end
+
+  def getFormattedPaidAt
+    self.paid_at.strftime("%d/%m/%Y")
+  end
+
   def updatePayments
     paymentPlan = self.payment_plan
     remainingPayments = paymentPlan.getRemainingPayments

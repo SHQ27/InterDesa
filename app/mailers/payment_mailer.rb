@@ -1,17 +1,17 @@
 class PaymentMailer < ApplicationMailer
   def due_payment 
-    @payment = params[:payment]
-    mail(to: @payment.payment_plan.client.email, 'Tiene una cuota vencida.')
+    @paymentPlan = params[:paymentPlan]
+    mail(to: @paymentPlan.client.email, subject: 'Dto. de Cobranzas de INTERDESA S.A.')
   end
 
   def upcoming_payment 
     @payment = params[:payment]
-    mail(to: @payment.payment_plan.client.email, 'Una cuota está próxima a vencer.')
+    mail(to: @payment.payment_plan.client.email, subject: "Liquidación de plan de pago inmobiliario.")
   end
 
   def recieved_payment 
     @payment = params[:payment]
-    mail(to: @payment.payment_plan.client.email, 'Su pago ha sido acreditado!')
+    mail(to: @payment.payment_plan.client.email, subject: '¡Su pago ha sido acreditado!')
   end
 
 end

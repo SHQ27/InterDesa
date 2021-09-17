@@ -4,6 +4,135 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p>TEST UPCOMING PAYMENT PARA CUOTA <%= @payment.name %></p>
+    <table role="presentation" cellspacing="0" cellpadding="0" width="100%">
+          <tbody>
+            <tr>
+              <td bgcolor="#EEEEEE" align="center" style='padding-top: 20px;'>
+                <table role="presentation" cellspacing="0" cellpadding="0" width="600">
+                  <tbody>
+                    <tr>
+                      <td style="background:#cd2122" bgcolor="#0072FF">
+
+                        <div style="line-height:32px">&zwnj;</div>
+                        <table role="presentation" cellspacing="0" cellpadding="0" width="100%">
+                          <tbody>
+                            <tr>
+                              <td style="padding:0 96px" align="center">
+                                <h1 style="color:#ffffff;font-size:28px;font-weight:300;line-height:100%;margin:0">Informe
+                                  de vencimiento de cuota</h1>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div style="line-height:40px">&zwnj;</div>
+
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table role="presentation" cellspacing="0" cellpadding="0" width="100%">
+          <tbody>
+            <tr>
+              <td bgcolor="#EEEEEE" align="center">
+                <table role="presentation" cellspacing="0" cellpadding="0" width="600">
+                  <tbody>
+                    <tr>
+                      <td style="padding:0 24px" bgcolor="#FFFFFF" align="left">
+                        <div style="line-height:24px">&zwnj;</div>
+                        <table role="presentation" cellspacing="0" cellpadding="0" width="100%">
+                          <tbody>
+                            <tr>
+                              <td style="padding:0 64px" align="center" width="100%">
+                                <h2 style="color:#000;font-size:20px;font-weight:300;line-height:28px;margin:0 0 24px">
+                                  <%= @payment.payment_plan.client.name%> <%=@payment.payment_plan.client.lastname %>  
+                                </h2>
+                                <p style="color:#888888;font-size:16px;line-height:24px;margin:0">Ya
+                                  está disponible la cuota
+                                  correspondiente al período <%= @payment.getStartMonthName%> - <%= @payment.getDueMonthName%> 
+                                de su plan de ahorro en la unidad <span style="color:#cd2122"><%= @payment.payment_plan.unit.name%></span> del inmueble sito en <span style='color:#cd2122'> 
+                                  <%= @payment.payment_plan.unit.building.address%></span>
+                                </p>
+                                <h4 style="text-align:left;font-size:16px">Vencimiento: <strong><%= @payment.getFormattedEnd%></strong></h4>
+                                <h4 style="text-align:left;font-size:16px">Importe: <strong><%= @payment.getFormattedAmount%> USD</strong></h4>
+                                <div style="line-height:32px">&zwnj;</div>
+                                <p style="color:#000;margin:0;font-size:14px">¡Estamos en
+                                  contacto!</p>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table role="presentation" cellspacing="0" cellpadding="0" width="100%">
+          <tbody>
+            <tr>
+              <td bgcolor="#EEEEEE" align="center">
+                <table role="presentation" cellspacing="0" cellpadding="0" width="600">
+                  <tbody>
+                    <tr>
+                      <td style="padding:24px 32px" bgcolor="#FFFFFF">
+                        <div style="background:#eeeeee;height:1px;line-height:1px">&zwnj;</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table role="presentation" cellspacing="0" cellpadding="0" width="100%">
+          <tbody>
+            <tr>
+              <td bgcolor="#EEEEEE" align="center">
+                <table role="presentation" cellspacing="0" cellpadding="0" width="600">
+                  <tbody>
+                    <tr>
+                      <td style="padding:0 24px" bgcolor="#FFFFFF">
+                        <table role="presentation" cellspacing="0" cellpadding="0" width="100%">
+                          <tbody>
+                            <tr>
+                              <td style="padding:0 8px" align="center" width="100%">
+                                <p style="color:#888888;margin:0">
+                                  Centro de Atención Telefónica: <span style="color:#cd2122;margin:0">(011)
+                                    4335-8000</span> </p>
+                                <p> <a href="mailto:interplan.mkt@interplan.com.ar" style="color:#cd2122;margin:0" target="_blank">interplan.mkt@interplan.com.ar</a>
+                                </p>
+                                <div style="line-height:24px">&zwnj;</div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding:0 24px" bgcolor="#EEEEEE">
+                        <div style="line-height:24px">&zwnj;</div>
+                        <table role="presentation" cellspacing="0" cellpadding="0" width="100%">
+                          <tbody>
+                            <tr>
+                              <td style="padding:0 8px" align="center" width="100%">
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div style="line-height:24px">&zwnj;</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
   </body>
 </html>

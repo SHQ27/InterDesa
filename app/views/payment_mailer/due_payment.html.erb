@@ -4,6 +4,23 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p>TEST DUE PARA CUOTA <%= @payment.name %></p>
+    <div id=":2z" style='padding-left: 90px; padding-right: 90px; padding-top: 10px;'>
+      <img src="http://www.interdesa.com.ar/assets/img/logo-InterDesa.png" alt="Logo Interdesa S.A." class="CToWUd"><br><br><p style="margin-bottom:0.28cm;line-height:108%" align="justify"></p>
+      <p style="margin-bottom:0.28cm;line-height:108%" align="justify">
+      De nuestra consideración:
+      </p>
+      <p style="margin-bottom:0.28cm;line-height:108%" align="justify">
+      Nos dirigimos a usted, <%= @paymentPlan.client.name %> <%= @paymentPlan.client.lastname %>, con motivo de informarle que el plan de pagos correspondiente a la unidad "<%= @paymentPlan.unit.name%>" del edificio sito en la calle <%= @paymentPlan.unit.building.address%>, del cual usted es titular, registra a la fecha un saldo emitido e impago de <%= sprintf('%.2f', @paymentPlan.getDueAmount) %> USD. 
+      </p>
+      <p style="margin-bottom:0.28cm;line-height:108%" align="justify">En
+      caso de haber regularizado su saldo con anterioridad a esta
+      comunicación, por favor desestime la misma.</p>
+      <p style="margin-bottom:0.28cm;line-height:108%" align="justify">Ante
+      cualquier duda o inquietud, rogamos que se dirija a nuestro
+      Departamento de Atención al Cliente personalmente, por teléfono al
+      011 4335-8000 o bien por correo electrónico a: <a href="mailto:atencionalcliente@interplan.com.ar" target="_blank">intimaciones@interplan.com.ar</a></p>
+      <p style="margin-bottom:0.28cm;line-height:108%" align="justify">Muchas
+      gracias.</p><div class="yj6qo"></div><div class="adL">
+      </div></div>
   </body>
 </html>
