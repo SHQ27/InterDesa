@@ -4,6 +4,9 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
+  config.hosts << "app.interdesa."
+  config.active_storage.routes_prefix = '/data'
+
   config.cache_classes = true
 
   # Eager load code on boot. This eager loads most of Rails and
@@ -132,4 +135,6 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+  config.default_url_options = { host: "app.interdesa.com.ar" }
+  Rails.application.routes.default_url_options[:host] = 'app.interdesa.com.ar'
 end
