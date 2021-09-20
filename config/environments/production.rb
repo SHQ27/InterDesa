@@ -4,7 +4,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
-  config.hosts << "app.interdesa."
+  config.hosts << "app.interdesa.com.ar"
   config.active_storage.routes_prefix = '/data'
 
   config.cache_classes = true
