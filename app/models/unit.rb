@@ -19,8 +19,8 @@ class Unit < ApplicationRecord
 
   def self.getTypes
     return {
-      'apartment' => 'apartment',
-      'parking' => 'parking'
+      'Apartment' => 0,
+      'Parking' => 1
     }
   end
 

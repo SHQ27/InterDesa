@@ -28,8 +28,9 @@ ActiveAdmin.register Building do
       groundFloorApartments = params[:ground_floor_apartments]
       defaultApartmentPrice = params[:default_apartment_price]
       defaultParkingPrice = params[:default_parking_price]
+      defaultRooms = params[:average_apartment_rooms]
 
-      resource.createUnits(apartmentsPerStory.to_i, stories.to_i, parkings.to_i, groundFloorApartments.to_i, defaultApartmentPrice.to_i, defaultParkingPrice.to_i)
+      resource.createUnits(apartmentsPerStory.to_i, stories.to_i, parkings.to_i, groundFloorApartments.to_i, defaultApartmentPrice.to_i, defaultParkingPrice.to_i, defaultRooms.to_i)
 
       flash[:notice] = 'Units generated!'
     else

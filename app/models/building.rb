@@ -2,7 +2,7 @@ class Building < ApplicationRecord
   has_many :units
 
   #After create
-  def createUnits(apartmentsPerStory, stories, parkings = 0, groundFloorApartments = 0, apartmentPrice = 0, parkingPrice = 0)
+  def createUnits(apartmentsPerStory, stories, parkings = 0, groundFloorApartments = 0, apartmentPrice = 0, parkingPrice = 0, rooms = 0)
     abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L']
 
     #Generate parkings
@@ -25,7 +25,8 @@ class Building < ApplicationRecord
         building_id: self.id,
         type_id: 'apartment',
         price: apartmentPrice,
-        details: ''
+        details: '',
+        rooms: rooms
       )
     end
 
@@ -39,7 +40,8 @@ class Building < ApplicationRecord
           building_id: self.id,
           type_id: 'apartment',
           price: apartmentPrice,
-          details: ''
+          details: '',
+          rooms: rooms
         )
       end
       currentFloor += 1
