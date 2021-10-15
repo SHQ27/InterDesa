@@ -3,7 +3,17 @@ class PaymentPlan < ApplicationRecord
   belongs_to :unit
   belongs_to :client
 
+  enum frequency_id: %i[month year]
+
   after_create :createPayments
+
+
+  def self.getFrequencies
+    return {
+      'Month' => 'month',
+      'Year' => 'year'
+    }
+  end
 
   #After create
   def createPayments
@@ -11,14 +21,19 @@ class PaymentPlan < ApplicationRecord
     self.save
     payments = self.number_of_payments
     planStart = self.start
-    paymentPlanTotal = self.unit.price
+    paymentPlanTotal = (self.unit.price - self.down_payment) * (self.percentage / 100.to_f)
 
     i = 0
 
     while i < payments
       paymentName = "Cuota nro. #{i + 1} - #{self.unit.name} (#{self.unit.building.name})"
-      paymentStart = planStart + i.month
-      paymentDue = paymentStart + 1.month
+      if self.frequency_id == 'month'
+        paymentStart = planStart + i.month
+        paymentDue = paymentStart + 1.month
+      elsif self.frequency_id == 'year'
+        paymentStart = planStart + i.year
+        paymentDue = paymentStart + 1.year
+      end
       paymentAmount = paymentPlanTotal / payments
 
       payment = Payment.create!( 
@@ -44,7 +59,7 @@ class PaymentPlan < ApplicationRecord
   end
 
   def getRemainingAmount
-    totalAmount = self.unit.price
+    totalAmount = (self.unit.price - self.down_payment) * (self.percentage / 100.to_f)
     paidPayments = self.getPaidPayments
     paidAmount = 0
     paidPayments.each do |p|
