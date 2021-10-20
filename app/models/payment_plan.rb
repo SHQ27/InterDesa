@@ -21,7 +21,7 @@ class PaymentPlan < ApplicationRecord
     self.save
     payments = self.number_of_payments
     planStart = self.start
-    paymentPlanTotal = (self.unit.price - self.down_payment) * (self.percentage / 100.to_f)
+    paymentPlanTotal = self.unit.price * (self.percentage / 100.to_f)
 
     i = 0
 
@@ -59,7 +59,7 @@ class PaymentPlan < ApplicationRecord
   end
 
   def getRemainingAmount
-    totalAmount = (self.unit.price - self.down_payment) * (self.percentage / 100.to_f)
+    totalAmount = self.unit.price * (self.percentage / 100.to_f)
     paidPayments = self.getPaidPayments
     paidAmount = 0
     paidPayments.each do |p|

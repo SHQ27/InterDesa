@@ -54,7 +54,7 @@ class Building < ApplicationRecord
   def getSoldUnits
     soldUnits = 0
     self.units.each do |u|
-      if u.payment_plan
+      if u.payment_plan.length > 0
         soldUnits += 1
       end
     end
