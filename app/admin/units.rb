@@ -1,5 +1,5 @@
 ActiveAdmin.register Unit do
-  permit_params :name, :type_id, :price, :details, :building_id
+  permit_params :name, :type_id, :price, :details, :building_id, :rooms, :square_meters
   menu priority: 2, parent: "Buildings" 
 
   filter :building
@@ -8,6 +8,7 @@ ActiveAdmin.register Unit do
   filter :type_id, as: :select, collection: Unit.getTypeFilters
   filter :price
   filter :rooms
+  filter :square_meters
 
   index do
     selectable_column
@@ -16,6 +17,7 @@ ActiveAdmin.register Unit do
     column :building
     column :type_id
     column :price
+    column :square_meters
     actions
   end
 
@@ -29,6 +31,7 @@ ActiveAdmin.register Unit do
        f.input :type_id, as: :select, collection: Unit.getTypes, label: :name, selected: selectedType, :input_html => { :disabled => disabled }
        f.input :price, :input_html => { :disabled => disabled }
        f.input :rooms
+       f.input :square_meters
        f.input :details, label: 'Details', :input_html => { :disabled => disabled }
      end
      f.actions

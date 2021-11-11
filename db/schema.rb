@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_15_160622) do
+ActiveRecord::Schema.define(version: 2021_11_11_190249) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -57,6 +57,18 @@ ActiveRecord::Schema.define(version: 2021_10_15_160622) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "financings", force: :cascade do |t|
+    t.integer "price_list_id", null: false
+    t.integer "payments", null: false
+    t.float "financing_percentage_value_over_unit_price", null: false
+    t.float "payment_percentage_value_over_financed_price", null: false
+    t.integer "payment_frequency", null: false
+    t.float "fee_percentage_value_over_financed_price", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["price_list_id"], name: "index_financings_on_price_list_id"
+  end
+
   create_table "payment_plans", force: :cascade do |t|
     t.integer "number_of_payments", null: false
     t.integer "unit_id", null: false
@@ -88,6 +100,27 @@ ActiveRecord::Schema.define(version: 2021_10_15_160622) do
     t.index ["payment_plan_id"], name: "index_payments_on_payment_plan_id"
   end
 
+  create_table "price_lists", force: :cascade do |t|
+    t.integer "building_id", null: false
+    t.integer "unit_type_id", null: false
+    t.integer "downpayment_amount", null: false
+    t.float "downpayment_percentage_over_unit_price", null: false
+    t.integer "annual_payment_amount", null: false
+    t.float "annual_payment_percentage_over_unit_price", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["building_id"], name: "index_price_lists_on_building_id"
+  end
+
+  create_table "taxes", force: :cascade do |t|
+    t.integer "price_list_id", null: false
+    t.integer "name", null: false
+    t.float "percentage_value_over_unit_price", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["price_list_id"], name: "index_taxes_on_price_list_id"
+  end
+
   create_table "units", force: :cascade do |t|
     t.string "name", null: false
     t.integer "type_id", null: false
@@ -97,11 +130,15 @@ ActiveRecord::Schema.define(version: 2021_10_15_160622) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "rooms"
+    t.integer "square_meters"
     t.index ["building_id"], name: "index_units_on_building_id"
   end
 
+  add_foreign_key "financings", "price_lists"
   add_foreign_key "payment_plans", "clients"
   add_foreign_key "payment_plans", "units"
   add_foreign_key "payments", "payment_plans"
+  add_foreign_key "price_lists", "buildings"
+  add_foreign_key "taxes", "price_lists"
   add_foreign_key "units", "buildings"
 end
