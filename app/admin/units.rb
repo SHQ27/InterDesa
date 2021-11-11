@@ -5,7 +5,7 @@ ActiveAdmin.register Unit do
   filter :building
   filter :payment_plan
   filter :name
-  filter :type_id, as: :select, collection: Unit.getTypes
+  filter :type_id, as: :select, collection: Unit.getTypeFilters
   filter :price
   filter :rooms
 
@@ -21,7 +21,7 @@ ActiveAdmin.register Unit do
 
 
   form do |f|
-    disabled = f.object && f.object.payment_plan ? true : false
+    disabled = f.object && f.object.payment_plan.length > 0 ? true : false
     selectedType = f.object ? f.object.type_id : 'apartment'
      f.inputs 'Information' do
        f.input :name, :input_html => { :disabled => disabled }

@@ -6,9 +6,15 @@ class Unit < ApplicationRecord
 
   def self.getTypes
     return {
+      'Apartment' => 'apartment',
+      'Parking' => 'parking'
+    }
+  end
+
+  def self.getTypeFilters
+    return {
       'Apartment' => 0,
       'Parking' => 1
     }
   end
-
 end
