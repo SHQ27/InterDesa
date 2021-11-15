@@ -9,6 +9,7 @@
               <thead>
                 <tr>
                   <th class='col' style='text-align: center' rowspan='2'>Name</th>
+                  <th class='col' style='text-align: center' rowspan='2'>Rooms</th>
                   <th class='col' style='text-align: center' rowspan='2'>Square meters</th>
                   <th class='col' style='text-align: center' rowspan='2'>Downpayments</th>
                   <th class='col' style='text-align: center' rowspan='2'>Annual payments</th>
@@ -31,6 +32,7 @@
                 <% @building.getApartments().each do |apt| %>
                   <tr>
                     <td style='text-align: center'><%= apt.name %></td>
+                    <td style='text-align: center'><%= apt.rooms %></td>
                     <td style='text-align: center'><%= apt.square_meters %></td>
                     <td style='text-align: center'>$<%= @building.getApartmentPriceList().getDownpaymentAmountForUnit(apt) %></td>
                     <td style='text-align: center'>$<%= @building.getApartmentPriceList().getAnnualPaymentAmountForUnit(apt) %></td>
