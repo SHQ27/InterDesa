@@ -17,7 +17,9 @@ ActiveAdmin.register Building do
   end
 
   action_item :building_price_list, only: :show do
-    link_to('View price list', view_price_list_admin_building_path(resource), id: :view_price_list_link, class: :button)
+    if resource.price_lists.length > 0 
+      link_to('View price list', view_price_list_admin_building_path(resource), id: :view_price_list_link, class: :button)
+    end
   end
 
 
