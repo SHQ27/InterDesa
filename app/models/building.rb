@@ -1,5 +1,6 @@
 class Building < ApplicationRecord
   has_many :units
+  has_many :price_lists
 
   #After create
   def createUnits(apartmentsPerStory, stories, parkings = 0, groundFloorApartments = 0, apartmentPrice = 0, parkingPrice = 0, rooms = 0)
@@ -49,7 +50,6 @@ class Building < ApplicationRecord
 
   end
 
-
   #Finders
   def getSoldUnits
     soldUnits = 0
@@ -61,8 +61,24 @@ class Building < ApplicationRecord
     soldUnits
   end
 
+  def getApartments
+    self.units.where('type_id = 0')
+  end
+
+  def getParkings
+    self.units.where('type_id = 1')
+  end
+
   def getRemainingUnits
     self.units.length - self.getSoldUnits
+  end
+
+  def getApartmentPriceList
+    self.price_lists.where('unit_type_id = 0').last
+  end
+
+  def getParkingPriceList
+    self.price_lists.where('unit_type_id = 1').last
   end
 
 end

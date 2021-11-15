@@ -16,6 +16,11 @@ ActiveAdmin.register Building do
     link_to('Generate units', unit_generation_admin_building_path(resource), id: :generate_units_link, class: :button)
   end
 
+  action_item :building_price_list, only: :show do
+    link_to('View price list', view_price_list_admin_building_path(resource), id: :view_price_list_link, class: :button)
+  end
+
+
   member_action :unit_generation, method: :get do
     @building = resource
   end
@@ -37,6 +42,10 @@ ActiveAdmin.register Building do
       flash[:alert] = 'Building already has created units.'
     end
     redirect_to action: 'show', id: resource.id
+  end
+
+  member_action :view_price_list, method: :get do
+    @building = resource
   end
 
 end

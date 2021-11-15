@@ -1,0 +1,97 @@
+<div id="main_content_wrapper">
+  <div id="main_content">
+    <div class='columns'>
+      <% if @building.getApartmentPriceList() %>
+        <div class='panel'>
+          <h3>Apartment price list for <%=@building.name%></h3>
+          <div class='panel_contents'>
+            <table>
+              <thead>
+                <tr>
+                  <th class='col' style='text-align: center' rowspan='2'>Name</th>
+                  <th class='col' style='text-align: center' rowspan='2'>Square meters</th>
+                  <th class='col' style='text-align: center' rowspan='2'>Downpayments</th>
+                  <th class='col' style='text-align: center' rowspan='2'>Annual payments</th>
+                  <% if @building.getApartmentPriceList().financings.length > 0 %><th class='col' style='text-align: center' colspan='<%=@building.getApartmentPriceList().financings.length%>'>Financing</th> <% end %>
+                  <% if @building.getApartmentPriceList().taxes.length > 0 %><th class='col' style='text-align: center' colspan='<%=@building.getApartmentPriceList().taxes.length%>'>Taxes</th><% end %>
+                </tr>
+                <% if @building.getApartmentPriceList().financings.length or @building.getApartmentPriceList().taxes.length%>
+                  <tr>
+                    <% @building.getApartmentPriceList().financings.each do |f|%>
+                      <th style='text-align: center'><%= f.payments %></th>
+                    <% end %>
+                    <% @building.getApartmentPriceList().taxes.each do |t|%>
+                      <th style='text-align: center'><%= t.name %></th>
+                    <% end %>
+                  </tr>
+                <% end %>
+
+              </thead>
+              <tbody>
+                <% @building.getApartments().each do |apt| %>
+                  <tr>
+                    <td style='text-align: center'><%= apt.name %></td>
+                    <td style='text-align: center'><%= apt.square_meters %></td>
+                    <td style='text-align: center'>$<%= @building.getApartmentPriceList().getDownpaymentAmountForUnit(apt) %></td>
+                    <td style='text-align: center'>$<%= @building.getApartmentPriceList().getAnnualPaymentAmountForUnit(apt) %></td>
+                    <% @building.getApartmentPriceList().financings.each do |f|%>
+                      <td style='text-align: center;'>$<%=f.getFinancedAmountForUnit(apt)%></td>
+                    <% end %>
+                    <% @building.getApartmentPriceList().taxes.each do |t|%>
+                      <td style='text-align: center;'>$<%=t.getAmountForUnit(apt)%></td>
+                    <% end %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      <% end %>
+      <% if @building.getParkingPriceList() %>
+        <div class='panel'>
+          <h3>Parking price list for <%=@building.name%></h3>
+          <div class='panel_contents'>
+            <table>
+              <thead>
+                <tr>
+                  <th class='col' style='text-align: center' rowspan='2'>Name</th>
+                  <th class='col' style='text-align: center' rowspan='2'>Downpayments</th>
+                  <th class='col' style='text-align: center' rowspan='2'>Annual payments</th>
+                  <% if @building.getParkingPriceList().financings.length > 0%><th class='col' style='text-align: center' colspan='<%=@building.getParkingPriceList().financings.length%>'>Financing</th> <% end %>
+                  <% if @building.getParkingPriceList().taxes.length > 0%><th class='col' style='text-align: center' colspan='<%=@building.getParkingPriceList().taxes.length%>'>Taxes</th><% end %>
+                </tr>
+                <% if @building.getParkingPriceList().financings.length or @building.getParkingPriceList().taxes.length%>
+                  <tr>
+                    <% @building.getParkingPriceList().financings.each do |f|%>
+                      <th style='text-align: center'><%= f.payments %></th>
+                    <% end %>
+                    <% @building.getParkingPriceList().taxes.each do |t|%>
+                      <th style='text-align: center'><%= t.name %></th>
+                    <% end %>
+                  </tr>
+                <% end %>
+
+              </thead>
+              <tbody>
+                <% @building.getParkings().each do |prk| %>
+                  <tr>
+                    <td style='text-align: center'><%= prk.name %></td>
+                    <td style='text-align: center'>$<%= @building.getParkingPriceList().getDownpaymentAmountForUnit(prk) %></td>
+                    <td style='text-align: center'>$<%= @building.getParkingPriceList().getAnnualPaymentAmountForUnit(prk) %></td>
+                    <% @building.getParkingPriceList().financings.each do |f|%>
+                      <td style='text-align: center;'>$<%=f.getFinancedAmountForUnit(prk)%></td>
+                    <% end %>
+                    <% @building.getParkingPriceList().taxes.each do |t|%>
+                      <td style='text-align: center;'>$<%=t.getAmountForUnit(prk)%></td>
+                    <% end %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
