@@ -6,8 +6,7 @@ class Financing < ApplicationRecord
     amountToFinance = toFinance / 100 * unit.price
     paymentAmount = amountToFinance / self.payments 
     paymentAmountPlusFees = paymentAmount * ((100 + self.fee_percentage_value_over_financed_price)/100)
-    totalFinanced = paymentAmountPlusFees * self.payments
-    totalFinanced
+    paymentAmountPlusFees.round(2)
   end
 
 end

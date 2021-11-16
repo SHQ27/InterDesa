@@ -29,8 +29,8 @@
 
               </thead>
               <tbody>
-                <% @building.getApartments().each do |apt| %>
-                  <tr>
+                <% @building.getApartments().each_with_index do |apt, index| %>
+                  <tr class='<% if index.odd? %>odd<% else %>even<% end %>'>
                     <td style='text-align: center'><%= apt.name %></td>
                     <td style='text-align: center'><%= apt.rooms %></td>
                     <td style='text-align: center'><%= apt.square_meters %></td>
@@ -75,8 +75,8 @@
 
               </thead>
               <tbody>
-                <% @building.getParkings().each do |prk| %>
-                  <tr>
+                <% @building.getParkings().each_with_index do |prk, index| %>
+                  <tr class='<% if index.odd? %>odd<% else %>even<% end %>'>
                     <td style='text-align: center'><%= prk.name %></td>
                     <td style='text-align: center'>$<%= @building.getParkingPriceList().getDownpaymentAmountForUnit(prk) %></td>
                     <td style='text-align: center'>$<%= @building.getParkingPriceList().getAnnualPaymentAmountForUnit(prk) %></td>

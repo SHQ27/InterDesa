@@ -10,7 +10,7 @@ class PriceList < ApplicationRecord
     quantity = self.downpayment_quantity
     downpaymentAmount = unit.price * percentage / 100
     total = downpaymentAmount * quantity
-    total
+    total.round(2)
   end
 
   def getAnnualPaymentAmountForUnit(unit)
@@ -19,6 +19,7 @@ class PriceList < ApplicationRecord
     annualPaymentAmount = unit.price * percentage / 100
     total = annualPaymentAmount* quantity
     total
+    total.round(2)
   end
 
   def getPercentageToFinance

@@ -76,6 +76,9 @@ ActiveAdmin.register_page "Dashboard" do
               column "Remaining units" do |b|
                 b.getRemainingUnits
               end
+              column "Price lists" do |b|
+                link_to "Ver", view_price_list_admin_building_path(b) if b.price_lists.length > 0
+              end
             end
           else
             "No buildings yet."
